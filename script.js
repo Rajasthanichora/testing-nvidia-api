@@ -7,7 +7,8 @@ const STATE = {
     testingModel: null,
 };
 
-const API_BASE = 'https://integrate.api.nvidia.com/v1';
+const CORS_PROXY = 'https://corsproxy.io/?';
+const API_BASE = CORS_PROXY + encodeURIComponent('https://integrate.api.nvidia.com/v1');
 const STORAGE_KEY = 'nvidia_api_key';
 
 const TEST_CACHE = JSON.parse(localStorage.getItem('nvidia_test_cache') || '{}');
