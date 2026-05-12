@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA API Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+                    <rect width="48" height="48" rx="10" fill="#76b900"/>
+                    <path d="M14 16h20v4H18v4h14v4H18v4h16v4H14V16z" fill="#0a0a0a"/>
+                </svg>
+                <span>NVIDIA API</span>
+            </div>
+            <div class="nav-badge" id="navBadge">Not Connected</div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="hero">
+            <h1>AI Model Dashboard</h1>
+            <p>Explore and test NVIDIA's free AI models with your API key</p>
+        </div>
+
+        <div class="card api-card">
+            <div class="card-header">
+                <h2>API Key</h2>
+                <span class="badge" id="keyBadge">Not Set</span>
+            </div>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="password" id="apiKey" placeholder="nvapi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" spellcheck="false">
+                    <button class="btn-icon" id="toggleKey" title="Toggle visibility">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="saveKeyBtn">Save Key</button>
+                    <button class="btn btn-secondary" id="testKeyBtn" disabled>Test Connection</button>
+                    <button class="btn btn-danger" id="clearKeyBtn" disabled>Remove Key</button>
+                </div>
+                <div class="status" id="keyStatus"></div>
+            </div>
+        </div>
+
+        <div class="card models-card" id="modelsSection" style="display:none;">
+            <div class="card-header">
+                <h2>Available Models</h2>
+                <span class="badge" id="modelsCount">0</span>
+            </div>
+            <div class="card-body">
+                <div class="filter-bar">
+                    <input type="text" id="searchInput" placeholder="Search models..." class="search-input">
+                    <div class="filter-tabs" id="filterTabs">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="chat">Chat</button>
+                        <button class="filter-btn" data-filter="image">Image</button>
+                        <button class="filter-btn" data-filter="embedding">Embedding</button>
+                        <button class="filter-btn" data-filter="code">Code</button>
+                        <button class="filter-btn" data-filter="audio">Audio</button>
+                        <button class="filter-btn" data-filter="video">Video</button>
+                        <button class="filter-btn" data-filter="other">Other</button>
+                    </div>
+                </div>
+                <div class="loader" id="loader">
+                    <div class="spinner"></div>
+                    <p>Loading models...</p>
+                </div>
+                <div id="modelsList" class="models-grid"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <footer class="footer">
+        <p>NVIDIA API Dashboard &mdash; Built with &hearts;</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
